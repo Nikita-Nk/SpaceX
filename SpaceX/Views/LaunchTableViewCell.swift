@@ -11,6 +11,8 @@ final class LaunchTableViewCell: UITableViewCell {
     
     static let identifier = "LaunchTableViewCell"
     
+    private let successLabelHeight: CGFloat = 15
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .tertiarySystemBackground
@@ -47,7 +49,7 @@ final class LaunchTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.textColor = .white
-        label.layer.cornerRadius = 10
+        label.layer.cornerRadius = successLabelHeight / 2
         label.clipsToBounds = true
         label.textAlignment = .center
         return label
@@ -132,8 +134,8 @@ final class LaunchTableViewCell: UITableViewCell {
             
             successLabel.rightAnchor.constraint(equalTo: rocketView.rightAnchor),
             successLabel.bottomAnchor.constraint(equalTo: rocketView.bottomAnchor),
-            successLabel.widthAnchor.constraint(equalToConstant: 15),
-            successLabel.heightAnchor.constraint(equalToConstant: 15)
+            successLabel.widthAnchor.constraint(equalToConstant: successLabelHeight),
+            successLabel.heightAnchor.constraint(equalToConstant: successLabelHeight)
         ])
     }
 }
