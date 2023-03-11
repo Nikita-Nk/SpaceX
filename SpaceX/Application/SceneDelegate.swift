@@ -16,9 +16,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let navController = UINavigationController(rootViewController: ViewController())
-        window?.rootViewController = navController
         window?.makeKeyAndVisible()
+        window?.overrideUserInterfaceStyle = .dark
+        
+        let networkService = RocketNetworkService()
+        let rocketsPageViewModel = RocketsPageViewModel(networkService: networkService)
+        let rocketsPageVC = RocketsPageViewController(viewModel: rocketsPageViewModel)
+        let navController = UINavigationController(rootViewController: rocketsPageVC)
+        navController.navigationBar.tintColor = .label
+        window?.rootViewController = navController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}
